@@ -1,7 +1,5 @@
 export default (selector, rule) => {
 
-  let styles = ''
-
   const tag = document.querySelectorAll(selector)
 
   if (tag) {
@@ -9,10 +7,13 @@ export default (selector, rule) => {
     const attr = selector.replace(/\W/g, '')
 
     tag[tag.length - 1].setAttribute(`data-last-${attr}`, '')
-    styles += `${selector}[data-last-${attr}] { ${rule} }\n`
+
+    return `${selector}[data-last-${attr}] { ${rule} }\n`
+
+  } else {
+
+    return ''
 
   }
-
-  return tag ? styles : ''
 
 }
